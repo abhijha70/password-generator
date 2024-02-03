@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Password generator project</h1>
+    <button onclick="creatingPasword(30)">Clck to generate</button>
+    <p class="js-password-para" value = "">Your Password :</p>
+    <script>
+
+      function creatingPasword(length) {
+        let strArgs =
+          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$&";
+
+        let randomString = "";
+
+        for (let i = 0; i < length; i++) {
+
+          let randomIndex = Math.floor(Math.random() * strArgs.length);
+
+          randomString += strArgs.charAt(randomIndex)
+        }
+        const para = document.querySelector('.js-password-para')
+          
+       const paragraph =  para.innerHTML = `Your Password : ${randomString}  <button onclick="copyBtn('${randomString}')"> click to copy </button>`
+       
+      }
+
+      function copyBtn(password) {
+        const textArea = document.createElement('textarea');
+        textArea.value = password;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Password copied :' + password);
+      }
+
+
+    </script>
+  </body>
+</html>
